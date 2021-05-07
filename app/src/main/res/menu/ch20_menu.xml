@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ch20_item01"
+        android:icon="@drawable/android"
+        android:title="@string/ch20_text_item_1"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/ch20_item02"
+        android:icon="@drawable/java"
+        android:title="@string/ch20_text_item_2" />
+    <item
+        android:id="@+id/ch20_item03"
+        android:title="@string/ch20_text_item_3" />
+</menu>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ch36 設定要存取的路徑 -->
+<paths>
+    <external-path
+        name="external_files"
+        path="." />
+</paths>

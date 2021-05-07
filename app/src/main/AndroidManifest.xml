@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="idv.tfp10102.wayne">
+
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- ch42 -->
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" /> <!-- ch47-1 -->
+    <!-- 加速度 -->
+    <uses-feature
+        android:name="android.hardware.Sensor.accelerometer"
+        android:required="true" /> <!-- 陀螺儀 -->
+    <uses-feature
+        android:name="android.hardware.Sensor.gyroscope"
+        android:required="true" /> <!-- 磁場 -->
+    <uses-feature
+        android:name="android.hardware.Sensor.compass"
+        android:required="true" /> <!-- 接近 -->
+    <uses-feature
+        android:name="android.hardware.Sensor.proximity"
+        android:required="true" /> <!-- 光度 -->
+    <uses-feature
+        android:name="android.hardware.Sensor.light"
+        android:required="true" /> <!-- ch37-1 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- ch 36 設定權限，宣告跳轉intent -->
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" /> <!-- 此設定可以避免無此裝置的手機搜尋到App -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <queries>
+        <intent>
+
+            <!-- 拍照授權 -->
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+
+            <!-- 選照片授權 -->
+            <action android:name="android.media.action.PICK" />
+        </intent>
+    </queries>
+    <!--
+ 2. 檢查是否有符合意圖的App(Activity)
+    Android 11(API 30)開始，須在AndroidManifest.xml的<manifest>標籤中，
+    加入<queries>、<intent>標籤，描述欲跳轉的App
+    -->
+    <queries>
+
+        <!-- 電話簿App -->
+        <intent>
+            <action android:name="android.intent.action.PICK" />
+
+            <data android:mimeType="vnd.android.cursor.dir/phone_v2" />
+        </intent>
+        <!-- 電話App -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+        </intent>
+    </queries> <!-- ch39 -->
+    <!-- 使用網路的權限 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 檢查網路狀態的權限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 使用概略定位的權限 (擇一) -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 使用精準定位的權限 (擇一) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- ch51-2 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TFP10102Wayne"
+        android:usesCleartextTraffic="true">
+        <!-- ch51_1 -->
+        <service
+            android:name=".ch51_1.Ch51_1_MyService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <!-- ch53 -->
+        <service
+            android:name=".ch53.ch53_JobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Ch15_theme"> <!-- 在activity使用自定義的theme -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- ch 36 取得照片原圖所需 -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- ch36-4 -->
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!-- ch39 -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD95gcyRDkrqreR7UlLE-BiSpg7Pqf--WE" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!-- ch52-2 -->
+        <receiver android:name=".ch52.Ch52_BroadcastReceiver" />
+
+        <!-- ch54 -->
+        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+    </application>
+
+</manifest>

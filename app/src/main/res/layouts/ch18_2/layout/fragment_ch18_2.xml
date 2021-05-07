@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ch18_2.Ch18_2_Fragment">
+
+    <CheckBox
+        android:id="@+id/ch18_2_checkBoxTranslate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/ch18_2_textTranslateAnimation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/ch18_2_checkBoxRotate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/ch18_2_textRotateAnimation"
+        app:layout_constraintStart_toStartOf="@+id/ch18_2_checkBoxTranslate"
+        app:layout_constraintTop_toBottomOf="@+id/ch18_2_checkBoxTranslate" />
+
+    <CheckBox
+        android:id="@+id/ch18_2_checkBoxScale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/ch18_2_textScaleAnimation"
+        app:layout_constraintStart_toStartOf="@+id/ch18_2_checkBoxRotate"
+        app:layout_constraintTop_toBottomOf="@+id/ch18_2_checkBoxRotate" />
+
+    <CheckBox
+        android:id="@+id/ch18_2_checkBoxAlpha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/ch18_2_textAlphaAnimation"
+        app:layout_constraintStart_toStartOf="@+id/ch18_2_checkBoxScale"
+        app:layout_constraintTop_toBottomOf="@+id/ch18_2_checkBoxScale" />
+
+    <ImageView
+        android:id="@+id/ch18_2_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/android"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ch18_2_checkBoxAlpha" />
+</androidx.constraintlayout.widget.ConstraintLayout>

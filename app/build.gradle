@@ -1,0 +1,75 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "idv.tfp10102.wayne"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res',
+                'src/main/res/layouts',
+                'src/main/res/layouts/ch09',
+                'src/main/res/layouts/ch10',
+                'src/main/res/layouts/ch11',
+                'src/main/res/layouts/ch12',
+                'src/main/res/layouts/ch13',
+                'src/main/res/layouts/ch14',
+                           'src/main/res/layouts/ch16_1',
+                           'src/main/res/layouts/ch16_2',
+                           'src/main/res/layouts/ch16_3',
+                'src/main/res/layouts/ch18_1',
+                           'src/main/res/layouts/ch18_2',
+                           'src/main/res/layouts/ch18_3',
+                'src/main/res/layouts/ch22_1',
+                           'src/main/res/layouts/ch44_2',
+                           'src/main/res/layouts/ch47',
+                           'src/main/res/layouts/ch51_1',
+                           'src/main/res/layouts/ch52',
+                           'src/main/res/layouts/ch53',
+            ]
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation 'com.google.android.gms:play-services-ads:20.1.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // ch36-4
+    implementation 'com.github.yalantis:ucrop:2.2.6'
+}

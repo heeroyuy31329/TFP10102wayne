@@ -1,0 +1,10 @@
+<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:propertyName="alpha"
+    android:valueType="floatType"
+    android:valueFrom="1"
+    android:valueTo="0.5"
+    android:duration="2000"
+    android:startOffset="1000"
+    android:repeatCount="infinite"
+    android:repeatMode="reverse"
+    android:interpolator="@android:anim/linear_interpolator" />

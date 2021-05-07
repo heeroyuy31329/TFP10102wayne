@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- ch9 start -->
+<!--    <TextView-->
+<!--        android:id="@+id/ch09TextViewName"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#C3B110"-->
+<!--        android:text="@string/ch09_text_name"-->
+<!--        android:textColor="@color/purple_700"-->
+<!--        android:textSize="50sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/ch09ImageView"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/ch09ImageView"-->
+<!--        android:layout_width="129dp"-->
+<!--        android:layout_height="122dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srcCompat="@drawable/mountain" />-->
+
+<!--    <WebView-->
+<!--        android:id="@+id/ch09WebView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="468dp"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/ch09TextViewName" />-->
+    <!-- ch9 end -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

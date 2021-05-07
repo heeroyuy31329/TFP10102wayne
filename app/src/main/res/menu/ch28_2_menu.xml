@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/AFragment"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="aaa" />
+    <item
+        android:id="@+id/BFragment"
+        android:icon="@android:drawable/presence_audio_away"
+        android:title="bbb" />
+</menu>

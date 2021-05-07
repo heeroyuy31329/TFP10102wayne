@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TFP101 02 wayne</string>
+    <!-- 測試用 -->
+    <string name="test_text_title">測試頁</string>
+    <string name="text_name">姓名</string>
+    <string name="text_my_name">姜</string>
+    <string name="text_ok">Ok</string>
+
+    <!-- ch09 -->
+    <string name="ch09_text_title">ch09 顯示元件</string>
+    <string name="ch09_text_name">姓名</string>
+    <!-- ch10 -->
+    <string name="ch10_text_title">ch10 基本容器元件</string>
+    <string name="ch10_btn_reset">重置</string>
+    <!-- ch11 -->
+    <string name="ch11_text_title">ch11 按鈕元件</string>
+    <string name="ch11_text_start">開始</string>
+    <string name="ch11_btn_message">按了 : </string>
+    <string name="ch11_btn_login">登入</string>
+    <string name="ch11_btn_submit">送出</string>
+    <string name="ch11_text_male">男</string>
+    <string name="ch11_text_female">女</string>
+    <string name="ch11_text_skill">技能 :</string>
+    <string name="ch11_text_skill_fire">火</string>
+    <string name="ch11_text_skill_water">水</string>
+    <string name="ch11_text_skill_wind">風</string>
+    <string name="ch11_text_skill_earth">地</string>
+    <string name="ch11_text_dark">闇</string>
+    <string name="ch11_text_light">光</string>
+    <string name="ch11_text_wifi">網路</string>
+    <string name="ch11_text_on">開</string>
+    <string name="ch11_text_off">關</string>
+    <!-- ch12 -->
+    <string name="ch12_text_title">ch12 文字輸入元件</string>
+    <string name="ch12_text_username">使用者名稱</string>
+    <string name="ch12_text_password">使用者密碼</string>
+    <string name="ch12_text_country">使用者國家</string>
+    <string name="ch12_text_submit">送出</string>
+    <string name="ch12_error_username">未輸入名稱</string>
+    <string name="ch12_error_password">未輸入密碼</string>
+    <string name="ch12_error_country">未輸入國家</string>
+    <!-- ch13 -->
+    <string name="ch13_text_title">ch13 條狀元件</string>
+    <string name="ch13_text_seekbar">拖拉條</string>
+    <!-- ch14 -->
+    <string name="ch14_text_title">ch14 樣式設計</string>
+    <!-- ch16 -->
+    <string name="ch16_1_text_title">ch16_1 自訂元件與2D繪圖</string>
+    <string name="ch16_1_textLeftSign">←</string>
+    <string name="ch16_1_textRightSign">→</string>
+    <string name="ch16_2_text_title">ch16_2 動態生產元件</string>
+    <string name="ch16_2_text_add">加入</string>
+    <string name="ch16_3_text_title">ch16_3 觸擊事件</string>
+    <string name="ch16_3_text_action">動作</string>
+    <string name="ch16_3_text_pointCount">觸擊數</string>
+    <string name="ch16_3_text_coordinate">座標</string>
+    <string name="ch16_3_text_clickEvent">點擊事件!</string>
+    <string name="ch16_3_text_down">按下</string>
+    <string name="ch16_3_text_move">移動</string>
+    <string name="ch16_3_text_up">抬起</string>
+    <!-- ch18 -->
+    <string name="ch18_1_text_title">ch18_1 圖匡動畫</string>
+    <string name="ch18_1_text_start">開始</string>
+    <string name="ch18_1_text_stop">停止</string>
+    <string name="ch18_2_text_title">ch18_2 補間動畫</string>
+    <string name="ch18_2_textTranslateAnimation">位移動畫</string>
+    <string name="ch18_2_textRotateAnimation">旋轉動畫</string>
+    <string name="ch18_2_textScaleAnimation">縮放動畫</string>
+    <string name="ch18_2_textAlphaAnimation">透明度動畫</string>
+    <!-- ch20 -->
+    <string name="ch20_text_item_1">選項01</string>
+    <string name="ch20_text_item_2">選項02</string>
+    <string name="ch20_text_item_3">選項03</string>
+    <!-- ch21 -->
+    <string-array name="ch21_my_skill">
+        <item>AAAAAA</item>
+        <item>BBBBBB</item>
+        <item>CCCCCC</item>
+        <item>DDDDDD</item>
+    </string-array>
+    <!-- ch22 -->
+    <string name="ch22_1_text_title">ch22_1 RecyclerView 基本</string>
+</resources>

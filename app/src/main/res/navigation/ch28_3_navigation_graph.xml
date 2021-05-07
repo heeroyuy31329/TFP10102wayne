@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ch28_3_navigation_graph"
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="idv.tfp10102.wayne.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/ch09_Fragment"
+        android:name="idv.tfp10102.wayne.ch09.Ch09_Fragment"
+        android:label="fragment_ch09"
+        tools:layout="@layout/fragment_ch09" />
+    <fragment
+        android:id="@+id/ch10_Fragment"
+        android:name="idv.tfp10102.wayne.ch10.Ch10_Fragment"
+        android:label="fragment_ch10"
+        tools:layout="@layout/fragment_ch10" />
+    <fragment
+        android:id="@+id/ch11_Fragment"
+        android:name="idv.tfp10102.wayne.ch11.Ch11_Fragment"
+        android:label="fragment_ch11"
+        tools:layout="@layout/fragment_ch11" />
+    <fragment
+        android:id="@+id/ch12_Fragment"
+        android:name="idv.tfp10102.wayne.ch12.Ch12_Fragment"
+        android:label="fragment_ch12"
+        tools:layout="@layout/fragment_ch12" />
+    <fragment
+        android:id="@+id/ch13_Fragment"
+        android:name="idv.tfp10102.wayne.ch13.Ch13_Fragment"
+        android:label="fragment_ch13"
+        tools:layout="@layout/fragment_ch13" />
+    <fragment
+        android:id="@+id/ch14_Fragment"
+        android:name="idv.tfp10102.wayne.ch14.Ch14_Fragment"
+        android:label="fragment_ch14"
+        tools:layout="@layout/fragment_ch14" />
+    <fragment
+        android:id="@+id/ch16_1_Fragment"
+        android:name="idv.tfp10102.wayne.ch16_1.Ch16_1_Fragment"
+        android:label="fragment_ch16_1"
+        tools:layout="@layout/fragment_ch16_1" />
+    <fragment
+        android:id="@+id/ch16_2_Fragment"
+        android:name="idv.tfp10102.wayne.ch16_2.Ch16_2_Fragment"
+        android:label="fragment_ch16_2"
+        tools:layout="@layout/fragment_ch16_2" />
+    <fragment
+        android:id="@+id/ch16_3_Fragment"
+        android:name="idv.tfp10102.wayne.ch16_3.Ch16_3_Fragment"
+        android:label="fragment_ch16_3"
+        tools:layout="@layout/fragment_ch16_3" />
+    <fragment
+        android:id="@+id/ch18_1_Fragment"
+        android:name="idv.tfp10102.wayne.ch18_1.Ch18_1_Fragment"
+        android:label="fragment_ch18_1"
+        tools:layout="@layout/fragment_ch18_1" />
+    <fragment
+        android:id="@+id/ch18_2_Fragment"
+        android:name="idv.tfp10102.wayne.ch18_2.Ch18_2_Fragment"
+        android:label="fragment_ch18_2"
+        tools:layout="@layout/fragment_ch18_2" />
+    <fragment
+        android:id="@+id/ch18_3_Fragment"
+        android:name="idv.tfp10102.wayne.ch18_3.Ch18_3_Fragment"
+        android:label="fragment_ch18_3"
+        tools:layout="@layout/fragment_ch18_3" />
+    <fragment
+        android:id="@+id/ch22_1_Fragment"
+        android:name="idv.tfp10102.wayne.ch22_1.Ch22_1_Fragment"
+        android:label="fragment_ch22_1"
+        tools:layout="@layout/fragment_ch22_1" />
+    <fragment
+        android:id="@+id/ch47_Fragment"
+        android:name="idv.tfp10102.wayne.ch47.Ch47_Fragment"
+        android:label="fragment_ch47"
+        tools:layout="@layout/fragment_ch47" />
+    <fragment
+        android:id="@+id/ch51_1_Fragment"
+        android:name="idv.tfp10102.wayne.ch51_1.Ch51_1_Fragment"
+        android:label="fragment_ch51_1"
+        tools:layout="@layout/fragment_ch51_1" />
+    <fragment
+        android:id="@+id/ch52_Fragment"
+        android:name="idv.tfp10102.wayne.ch52.Ch52_Fragment"
+        android:label="fragment_ch52"
+        tools:layout="@layout/fragment_ch52" />
+    <fragment
+        android:id="@+id/ch53_Fragment"
+        android:name="idv.tfp10102.wayne.ch53.Ch53_Fragment"
+        android:label="fragment_ch53"
+        tools:layout="@layout/fragment_ch53" />
+</navigation>

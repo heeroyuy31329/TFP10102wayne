@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainFragment_37_45">
+
+    <!-- //ch37-3 -->
+    <!--    <Button-->
+    <!--        android:id="@+id/ch37_3_btnUp"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="50dp"-->
+    <!--        android:layout_marginLeft="50dp"-->
+    <!--        android:layout_marginTop="50dp"-->
+    <!--        android:text="Up"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/ch37_3_btnDwn"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="20dp"-->
+    <!--        android:layout_marginLeft="20dp"-->
+    <!--        android:text="Down"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/ch37_3_btnUp"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/ch37_3_btnUp" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/ch37_3_btnPause"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="20dp"-->
+    <!--        android:layout_marginLeft="20dp"-->
+    <!--        android:text="Pause"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/ch37_3_btnDwn"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/ch37_3_btnDwn" />-->
+    <!-- ch40_1 -->
+    <!--    <TextView-->
+    <!--        android:id="@+id/ch40_1_textView"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="TextView" />-->
+
+    <!-- ch40_2 -->
+
+    <EditText
+        android:id="@+id/ch40_2_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ch40_2_latitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ch40_2_btnToLatLng" />
+
+    <EditText
+        android:id="@+id/ch40_2_longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ch40_2_latitude" />
+
+    <Button
+        android:id="@+id/ch40_2_btnToLatLng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="50dp"
+        android:text="↓"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ch40_2_address" />
+
+    <Button
+        android:id="@+id/ch40_2_btnToAddr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="↑"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ch40_2_btnToLatLng"
+        app:layout_constraintTop_toBottomOf="@+id/ch40_2_address" />
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/ch42_mapView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

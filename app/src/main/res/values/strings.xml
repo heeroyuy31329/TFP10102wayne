@@ -1,0 +1,131 @@
+<resources>
+    <string name="app_name">TFP101 02 wayne</string>
+    <!-- 測試用 -->
+    <string name="test_text_title">Test Page</string>
+    <string name="text_name">Name</string>
+    <string name="text_my_name">wayne</string>
+    <string name="text_ok">Ok</string>
+
+    <!-- ch09 -->
+    <string name="ch09_text_title">ch09 顯示元件</string>
+    <string name="ch09_text_name">Name</string>
+    <!-- ch10 -->
+    <string name="ch10_text_title">ch10 基本容器元件</string>
+    <string name="ch10_btn_reset">Reset</string>
+    <!-- ch11 -->
+    <string name="ch11_text_title">ch11 按鈕元件</string>
+    <string name="ch11_text_start">Start</string>
+    <string name="ch11_btn_message">click : </string>
+    <string name="ch11_btn_login">Login</string>
+    <string name="ch11_btn_submit">Submit</string>
+    <string name="ch11_text_male">Male</string>
+    <string name="ch11_text_female">Female</string>
+    <string name="ch11_text_skill">Skill :</string>
+    <string name="ch11_text_skill_fire">Fire</string>
+    <string name="ch11_text_skill_water">Water</string>
+    <string name="ch11_text_skill_wind">Wind</string>
+    <string name="ch11_text_skill_earth">Earth</string>
+    <string name="ch11_text_dark">Dark</string>
+    <string name="ch11_text_light">Light</string>
+    <string name="ch11_text_wifi">Wifi</string>
+    <string name="ch11_text_on">On</string>
+    <string name="ch11_text_off">Off</string>
+    <!-- ch12 -->
+    <string name="ch12_text_title">ch12 文字輸入元件</string>
+    <string name="ch12_text_username">Username</string>
+    <string name="ch12_text_password">Password</string>
+    <string name="ch12_text_country">Country</string>
+    <string name="ch12_text_submit">Submit</string>
+    <string name="ch12_error_username">No Username</string>
+    <string name="ch12_error_password">No Password</string>
+    <string name="ch12_error_country">No Country</string>
+    <!-- ch13 -->
+    <string name="ch13_text_title">ch13 條狀元件</string>
+    <string name="ch13_text_seekbar">seekbar</string>
+    <!-- ch14 -->
+    <string name="ch14_text_title">ch14 樣式設計</string>
+    <!-- ch16 -->
+    <string name="ch16_1_text_title">ch16_1 自訂元件與2D繪圖</string>
+    <string name="ch16_1_textLeftSign">←</string>
+    <string name="ch16_1_textRightSign">→</string>
+    <string name="ch16_2_text_title">ch16_2 動態生產元件</string>
+    <string name="ch16_2_text_add">Add</string>
+    <string name="ch16_3_text_title">ch16_3 觸擊事件</string>
+    <string name="ch16_3_text_action">Action</string>
+    <string name="ch16_3_text_pointCount">Point Count</string>
+    <string name="ch16_3_text_coordinate">Coordinate</string>
+    <string name="ch16_3_text_clickEvent">Click Event!</string>
+    <string name="ch16_3_text_down">Down</string>
+    <string name="ch16_3_text_move">Move</string>
+    <string name="ch16_3_text_up">Up</string>
+    <!-- ch18 -->
+    <string name="ch18_1_text_title">ch18_1 圖匡動畫</string>
+    <string name="ch18_1_text_start">Start</string>
+    <string name="ch18_1_text_stop">Stop</string>
+    <string name="ch18_2_text_title">ch18_2 補間動畫</string>
+    <string name="ch18_2_textTranslateAnimation">Translate Animation</string>
+    <string name="ch18_2_textRotateAnimation">Rotate Animation</string>
+    <string name="ch18_2_textScaleAnimation">Scale Animation</string>
+    <string name="ch18_2_textAlphaAnimation">Alpha Animation</string>
+    <string name="ch18_3_text_title">ch18_3 屬性動畫</string>
+    <string name="ch18_3_textTranslateAnimation">Translate Animation</string>
+    <string name="ch18_3_textRotateAnimation">Rotate Animation</string>
+    <string name="ch18_3_textScaleAnimation">Scale Animation</string>
+    <string name="ch18_3_textAlphaAnimation">Alpha Animation</string>
+    <string name="ch18_3_textColorAnimator">Color Animation</string>
+    <string name="ch18_3_textLinearInterpolator">Linear Interpolator</string>
+    <string name="ch18_3_textAccelerateInterpolator">Accelerate Interpolator</string>
+    <string name="ch18_3_textDecelerateInterpolator">Decelerate Interpolator</string>
+    <string name="ch18_3_textAccelerateDecelerateInterpolator">Accelerate Decelerate Interpolator</string>
+    <string name="ch18_3_textAnticipateInterpolator">Anticipate Interpolator</string>
+    <string name="ch18_3_textOvershootInterpolator">Overshoot Interpolator</string>
+    <string name="ch18_3_textAnticipateOvershootInterpolator">Anticipate Overshoot Interpolator</string>
+    <string name="ch18_3_textBounceInterpolator">Bounce Interpolator</string>
+    <string name="ch18_3_textCycleInterpolator">Cycle Interpolator</string>
+    <string name="ch18_3_textAnimation">Animation</string>
+    <string name="ch18_3_textInterpolator">Interpolator</string>
+    <!-- ch20 -->
+    <string name="ch20_text_item_1">item01</string>
+    <string name="ch20_text_item_2">item02</string>
+    <string name="ch20_text_item_3">item03</string>
+    <!-- ch21 -->
+    <string-array name="ch21_my_skill">
+        <item>AAAAAA</item>
+        <item>BBBBBB</item>
+        <item>CCCCCC</item>
+        <item>DDDDDD</item>
+    </string-array>
+    <!-- ch22 -->
+    <string name="ch22_1_text_title">ch22_1 RecyclerView 基本</string>
+    <!-- ch25 -->
+    <string name="ch25_text_login">Login</string>
+    <string name="ch25_text_name">Username</string>
+    <string name="ch25_text_password">Password</string>
+    <!-- ch26 -->
+    <string name="ch26_text_result">Result</string>
+    <!-- ch28 -->
+    <string name="ch28_drawerOpen">Open</string>
+    <string name="ch28_drawerClose">Close</string>
+    <!-- ch47 -->
+    <string name="ch47_text_title">ch47 感應器</string>
+    <string name="ch47_text_Accelerometer">Accelerometer Sensor</string>
+    <string name="ch47_text_Gyroscope">Gyroscope Sensor</string>
+    <string name="ch47_text_Orientation">Orientation Sensor</string>
+    <string name="ch47_text_Proximity">Proximity Sensor</string>
+    <string name="ch47_text_Light">Light Sensor</string>
+    <!-- ch51 -->
+    <string name="ch51_1_text_title">ch51_1 Service/Wake Lock</string>
+    <string name="ch51_1_text_start">Start Music</string>
+    <string name="ch51_1_text_stop">Sop Music</string>
+    <!-- ch52 -->
+    <string name="ch52_text_title">ch52 AlarmManager</string>
+    <string name="ch52_text_setAlarm">Set Alarm</string>
+    <string name="ch52_text_cancelAlarm">Cancel Alarm</string>
+    <!-- ch53 -->
+    <string name="ch53_text_title">ch53 JobScheduler</string>
+    <string name="ch53_text_schedule">Schedule Job</string>
+    <string name="ch53_text_cancel">Cancel Job</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

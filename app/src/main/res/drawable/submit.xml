@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/icon_submit_clicked" android:state_pressed="true" />
+    <item android:drawable="@drawable/icon_submit" />
+
+<!--    以下的順序不會正常運作，因為第一張後面沒有狀態設定，會造成所有狀態都使用第一張圖-->
+<!--    <item android:drawable="@drawable/icon_submit" />-->
+<!--    <item android:drawable="@drawable/icon_submit_clicked" android:state_pressed="true" />-->
+</selector>

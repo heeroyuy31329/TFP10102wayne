@@ -1,0 +1,1170 @@
+容器
+	方式一. 使用BeanFactory(舊版)
+		BeanFactory factory = new XmlBeanFactory(new ClassPathResource("beans.xml"));
+		
+	方式二. 使用ApplicationContext
+		1.a 依完整路徑載入
+			ApplicationContext context = new FileSystemXmlApplicationContext("完整路徑+檔名");
+
+		1.b 依classpath載入
+			ApplicationContext context = new ClassPathXmlApplicationContext("檔名");
+
+		1.c 依web環境根目錄載入
+			WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+
+			*註
+				ContextLoaderListener: 實作servlet容器的ServletContextListener介面, 可讓容器啟動時自動載入IoC容器
+				WebApplicationContextUtils: 透過此類別可取得透過ContextLoaderListenere啟動的IoC容器
+				WebApplicationContext: spring web環境的IoC容器
+
+
+		2 關閉
+			((ConfigurableApplicationContext) context).close();
+
+
+
+組態檔 - 在XML裡組態設定
+	1. 基本架構 :
+		<?xml version="1.0" encoding="UTF-8"?>
+		<beans xmlns="http://www.springframework.org/schema/beans"
+    			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    			xsi:schemaLocation="http://www.springframework.org/schema/beans
+    			http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+		</beans>
+
+	2. <bean>
+		2.1 屬性/子標籤 說明
+			Property		Required	Description
+			----------------------------------------------------------------------------------------------------------------------------
+			id							識別名稱
+			name						別名, 可定義多個別名, 以分號、空格或逗號分隔. 若無定義id時, name的第一個別名為識別名稱. 
+			class				Y		所屬類別
+			scope						範圍, singleton | prototype | session | request
+			autowire					自動裝配, default | byName | byType | constructor | no
+			lazy-init					啟動後是否延遲初始化
+			init-method					初始化方法
+			destroy-method				銷毀方法
+			factory-bean				指定產生此<bean>的工廠 類別/物件
+			factory-method				指定產生此<bean>的工廠物件的方法
+			parent						父bean, 子bean會繼承父bean之屬性值
+			abstract					為抽象bean否. abstract="true"時, 不設定class屬性. (抽象bean可將定義好的屬性值, 給子bean繼承)
+			
+
+			Tag					Description
+			------------------------------------------------------------------
+			<constructor-arg>	設定建構子參數
+								若該類別有多個建構子時，可用多個<constructor-arg>
+								配合type、name、index等屬性來設定使用哪個建構子
+				value			純量值
+				ref				參考值
+				type			參數型態
+				name			參數名稱
+				index			參數順序
+
+			<property>			以setter注入
+			<list>				注入多值, 可重複
+			<set>				注入多值, 不可重複
+			<map>				注入多值, 為entry model, key和value可以是任何型態
+			<props>				注入多值, 為entry model, key和value只能是字串型態
+
+
+		2.2 生命週期管理
+			2.2.1 修改類別: 在類別裡加入..
+				public void init(){
+						...
+   				}
+   				public void destroy(){
+						...
+   				}
+
+			2.2.2 <bean>加入init-method、destroy-method
+				<bean id="person" class="..." init-method="init" destroy-method="destroy">
+						...
+   				</bean>
+
+			2.2.3 以AbstractApplicationContext關閉: ((AbstractApplicationContext) context).registerShutdownHook();
+			
+			2.2.o 為每個<bean>加入初始化方法和銷毀方法
+				<beans ...
+						default-init-method="init" 
+						default-destroy-method="destroy">
+
+		2.3 依賴注入
+			注入方式
+				1. 透過建構子注入
+					<bean id="person" class="...">
+							<constructor-arg index="0" value="30" />
+							<constructor-arg index="1" value="William" />
+   					</bean>
+
+				2. 透過setter注入
+					<bean id="person" class="...">
+							<property name="age" value="30" />
+							<property name="name" ref="William" />
+   					</bean>
+
+				3. p-namespace (另一種寫法)
+					*註
+						1. 僅縮短簡短, 無特殊意義
+						2. 需先引入xmlns:p="http://www.springframework.org/schema/p"
+
+					語法
+						<bean p:性質="純量值" p:性質-ref="物件" />
+
+					範例
+						<bean id="person" class="..."
+	      					p:age="30"				<--age為性質
+	      					p:name-ref="myName"/>	<--name為性質, 注入物件時需加-ref
+
+			注入型態
+				1. 內部注入
+					<bean id="outerBean" class="...">
+						<property name="pro1">
+							<bean id="innerBean" class="..."/>	<-- 直接在<property>內宣告另外一個<bean>
+						</property>
+   					</bean>
+
+				2. 注入集合
+
+					2.1 list: 可重複的多值
+						<bean id="listExample" class="...">
+							<property name="peopleList">
+								<list>
+									<value>William</value>
+									<value>Ethan</value>
+									<value>Lee</value>
+									<value>Lee</value>
+								</list>
+							</property>
+						</bean>
+
+					2.2 set: 不可重複的多值
+						<bean id="setExample" class="...">
+							<property name="peopleList">
+								<set>
+									<value>William</value>
+									<value>Ethan</value>
+									<value>Lee</value>
+								</set>
+							</property>
+						</bean>
+
+					2.3 map: key和value可為任何型態的entry
+						<bean id="mapExample" class="...">
+							<property name="peopleList">
+         						<map>
+            						<entry key="p1" value="William"/>
+                        			<entry key="p2" value="Ethan"/>
+                        			<entry key="p3" value="Lee"/>
+                        			<entry key="p4" value="Lee"/>
+         						</map>
+     						</property>
+						</bean>
+
+						或
+
+						<bean id="mapExample" class="...">
+							<property name="peopleList">
+         						<map key-type="java.lang.String">
+									<entry>
+										<key>p1</key>
+										<value type="java.lang.String">William</value>
+									</entry>
+									<entry>
+										<key>p2</key>
+										<value type="java.lang.String">Ethan</value>
+									</entry>
+									<entry>
+										<key>p3</key>
+										<value type="java.lang.String">Lee</value>
+									</entry>
+									<entry>
+										<key>p4</key>
+										<value type="java.lang.String">Lee</value>
+									</entry>
+								</map>
+     						</property>
+						</bean>
+
+					2.4 props: key和value只能為字串的entry
+						<bean id="propsExample" class="...">
+							<property name="addressList">
+         						<props>
+            						<prop key="personOne">William</prop>
+                        			<prop key="personTwo">Ethan</prop>
+                        			<prop key="personThree">Lee</prop>
+                        			<prop key="personFour">Lee</prop>
+         						</props>
+     						</property>
+						</bean>
+
+					2.extra 指定泛型
+						<list>、<set>: 用value-type, EX..
+							<list value-type="java.lang.String">...</list>
+							<set value-type="web.member.bean.Member">...</set>
+
+						<map>: 用key-type、type, EX..
+							<map key-type="java.lang.String">
+								<entry>
+									<key>name</key>
+									<value type="java.lang.String">William</value>
+								</entry>
+								<entry>
+									<key>age</key>
+									<value type="java.lang.Integer">30</value>
+								</entry>
+							</map>
+
+						*註: 亦可用基本型態, EX. int、boolean..
+
+				3. 注入null
+					<property name="性質"><null/></property>
+
+
+
+組態類別 - 在Java裡組態設定
+	*註: 官方稱Java Based Configuration
+
+	Annotation
+		註釋				說明
+		---------------------------------------------------------------------------------------------------------------------------------------------------
+		@Configuration	聲明於類別前，表示此類別用於組態設定，等同於建立一個Spring組態檔
+		@Bean			聲明於方法前，表示此方法傳回物件交由Spring管理，等同<bean id=…>
+						方法名即此bean的id；方法回傳值即此bean之值
+		@Import			聲明於類別前，表示同時載入其他組態類別
+						用此註釋就不用..
+							context.register(SpringConfig2.class);
+							context.register(SpringConfig3.class);...
+		
+	步驟
+		建立組態類別
+			1. 建立組態類別
+				1.1 建立一類別JavaConfig
+				1.2 在類別前加上@Configuration
+
+				@Configuration
+				public class JavaConfig {
+					...
+				}
+
+			2. 撰寫組態類別
+				2.1 宣告受控管的bean: 建立一方法, 方法名對應id, 回傳型態對應class, ex..
+
+					@Bean
+					// @Bean(initMethod = "初始化方法名", destroyMethod = "銷毀方法名")
+					// @Scope("prototype")
+					public Circle circle() {
+						Circle circle = new Circle();
+						circle.setRadius(50);
+						return circle;
+					}
+
+				2.2 其他 (非必要)
+					2.2.1 撰寫初始化方法
+					2.2.2 撰寫銷毀方法
+
+		讀取組態類別
+			1. 宣告Context物件
+				AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+
+			2. 註冊組態類別
+				context.register(組態類別.class);
+				context.scan(掃描bean的套件1, 掃描bean的套件2, ..., 掃描bean的套件N);
+				context.refresh();
+
+			3. 取得bean
+				IMemberService ms = context.getBean(IMemberService.class);
+
+	載入組態類別步驟
+		序	說明				範例																								備註
+		------------------------------------------------------------------------------------------------------------------------------------------------------
+		1	宣告Context		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();		使用AnnotationConfigApplicationContext
+		2	指定組態類別		context.register(SpringConfig.class);														亦可在new時指定
+		3	更新(立即載入)		context.refresh();																			在new時指定組態類別則不需
+		4	載入bean			context.getBean("id");														
+
+
+
+後置處理器
+	1. 編寫後置處理器
+		public class MyPostProcessor implements BeanPostProcessor {
+
+			@Override
+			public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+				...
+				return bean;
+			}
+
+			@Override
+			public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+				...
+				return bean;
+			}
+
+		}
+	2. 加入<bean>
+		<bean class="xxx.yyy.MyPostProcessor" />
+
+
+
+組態檔裡的自動裝配(<bean autowire="xxx">)
+	模式				說明
+	------------------------------------------------------------------------------------------------
+	no(default)		不使用自動裝配
+	byName			依"名稱"自動裝配 (性質名 <--> bean的id或name)
+	byType			依"型態"自動裝配, 若有兩個以上匹配的bean則會拋出例外 (性質型態 <--> bean的class)
+	constructor		依建構子"參數型態"自動裝配 (建構子參數型態 <--> bean的class)
+	autodetect		先試著用constructor模式裝配, 若失敗則用byType模式
+
+	*註: 以上方式若找不到匹配bean, 則會拋出例外
+
+
+
+Java裡的自動裝配 - 透過Annotation
+	Spring Annotation
+		*註: 需先驅動, 在組態檔裡<beans>內加入<context:annotation-config />
+		註釋				說明
+		-----------------------------------------------------------------------------------------------------------------------------------------
+		@Required		聲明於setter前, 表示此性質"必須"在組態檔裡被注入
+		@Autowired		可聲明於建構子、setter、參數、屬性等位置前, 表示使用自動配置. 預設為一定要注入, 可設定@Autowired(required = false)表示非必要
+		@Qualifier		可聲明於TYPE、FIELD、METHOD(setter)、PARAMETER, 表示注入之bean的id
+		
+	JSR-250 Annotation
+		*註: 另外Spring Frame還支援JSR-250, JSR-250為Java自己的Annotation
+		註釋				說明
+		---------------------------------------------------------------------------------------------------------------------------------
+		@PostConstruct	聲明此方法為此bean類別的初始化方法, 等同在<bean>指定init-method, 用在方法前, 
+		@PreDestroy		聲明此方法為此bean類別的銷毀方法, 等同在<bean>指定destroy-method
+		@Resource		可聲明於TYPE, FIELD, METHOD, 表示注入(原為JNDI使用), 可用name="id"及type="類別名.class"指定bean的id和class
+
+	Java裡直接注入: SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(Object target)
+
+
+
+SpEL (Spring Expression Language)
+	簡述
+		Spring提供, 可用在xml組態檔的表示法
+	語法
+		#{}
+
+	運算符號
+		算術運算: +, -, *, /, %, ^, div, mod
+		關係運算: <, >, ==, !=, <=, >=, lt, gt, eq, ne, le, ge
+			*註: 在xml內用<、>符號會造成錯誤
+
+		邏輯運算: and, or, not, &&, ||, !
+		三元運算: ? :
+
+	呼叫類別靜態成員
+		靜態變數
+			#T(類別全名).變數名
+
+		靜態方法
+			#T(類別全名).方法名(參數名1, 參數名2, ..., 參數名N)
+
+		範例
+			<bean id="tools" class="ch02._05_el._01.Tools" >
+				<property name="qualified" value="#{true}" />
+		      	<property name="greater" value="#{250 gt 200 and 200 lt 4000}" />
+		      	<property name="literalExpre" value="#{100-85}" />
+		      	<property name="rand" value="#{T(java.lang.Math).random()}" />
+		      	<property name="name" value="#{'Bill'+' Clinton'}" />
+		      	<property name="userDir" value="#{systemProperties['user.dir']}" />
+   			</bean>
+
+
+	
+事件處理
+	事件種類
+		*註: Spring發布觸發之事件為單Thread方式, 所以若有一接收者未收到通知, 則會導致阻塞
+		序	類別名					說明
+		---------------------------------------------------------------------------------------
+		1	ContextRefreshedEvent	ApplicationContext初始化(new)或更新時
+									以及呼叫configurableApplicationContext.refresh()時觸發此事件
+		2	ContextStartedEvent		呼叫configurableApplicationContext.start()時觸發此事件
+		3	ContextStoppedEvent		呼叫configurableApplicationContext.stop()時觸發此事件
+		4	ContextClosedEvent		呼叫configurableApplicationContext.close()時觸發此事件
+		5	RequestHandledEvent		web環境下, http request已被服務時觸發此事件
+		
+	監聽步驟
+		1. 建立監聽器
+			public class ApplicationContextListener implements ApplicationListener<ApplicationEvent> {
+				@Override
+				public void onApplicationEvent(ApplicationEvent event) {
+					System.out.println(event.getClass().getSimpleName());
+				}
+			}
+		2. 宣告監聽器 (亦可用在組態類別用@Bean)
+			<bean class="xxx.yyy.ApplicationContextListener" />
+			
+	自訂事件步驟
+		1. 建立自訂Event類別
+				1.1 繼承ApplicationEvent
+				1.2 定義建構子
+		2. 建立自訂Publisher類別
+				*註: 若一類別實作ApplicationEventPublisherAware, 且宣告為bean, 則Spring將此物件視為事件發布者
+				2.1 實作ApplicationEventPublisherAware
+				2.2 宣告一屬性: private ApplicationEventPublisher publisher;
+				2.3 實作setApplicationEventPublisher: this.publisher = publisher;
+				2.3 定義一方法: publish(), publisher.publishEvent(new MyEvent(this));
+		3. 建立自訂Listener類別
+				3.1 實作ApplicationListener<MyEvent>
+				3.2 實作onApplicationEvent(MyEvent event)
+				3.3 宣告為bean
+
+
+
+AOP(Aspect Oriented Programming)
+	名詞解釋
+		名稱				說明
+		-------------------------------------------------------------------------------
+		Concern			橫切關注點, 出現在不同商業邏輯流程內的次要邏輯
+		Aspect			切面; 將出現在不同程式的相同程式片段, 獨立出來的橫切關注點, 是一個類別
+		Join point		切入點
+		Advice			通知, 是一個方法
+		Pointcut		實際切入點
+		Introduction	替現有的類別加入新功能而不需修改原程式
+		Target object	接受通知的物件
+		Weaving			織入
+		Proxy			代理
+		AutoProxy		自動代理, 可模糊過濾要被攔截的物件, ex. 攔截"*Service"
+
+	通知的種類
+		名稱				說明
+		---------------------------------------------------
+		before			前置通知, 方法執行前通知
+		after			後置通知, 方法執行後通知, 不考慮結果
+		after-retirning	返回後通知, return後通知
+		after-throwing	例外後通知, 拋出例外後通知
+		around			環繞通知, 呼叫方法時機為上述四項之總和
+
+	定義方式
+		1. XML
+		2. Annotation
+
+	用XML定義步驟
+		*註: 如果是要對Controller使用AOP, 需寫在Spring-MVC的組態檔裡(applicationContext-mvc.xml)
+	
+		1. 加入額外jar檔(AspectJ)
+			1.1 aopalliance-x.y.jar
+			1.2 aspectjrt-x.y.zz.jar
+			1.3 aspectjweaver-x.y.z.jar
+
+		2. 自定義Aspect類別, EX..
+			public MemberAspect1 {
+				public void showNow() {
+					System.out.println(new Date());
+				}
+			}
+
+		3. 組態檔裡import
+			<beans ...
+				xmlns:aop="http://www.springframework.org/schema/aop"
+				xsi:schemaLocation=...
+				http://www.springframework.org/schema/aop 
+    				http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+		4. 定義的語法
+			4.0 basic
+				<aop:config>
+				</aop:config>
+
+			4.1 aspect: 在<aop:config>裡, 加上
+				<aop:aspect id="" ref="xxxAspect">
+				</aop:aspect>
+
+			4.2 pointcut: 在<aop:aspect>裡, 加上
+				<aop:pointcut id="" expression="execution(xxx)" />	<--監控的方法 (pointcut expression)
+
+				*註: expression="xxx"內可寫的表示式稱為 "Pointcut Expression"
+
+			4.3 advice: 在<aop:aspect>裡, 加上
+				3.3.1 前置通知
+					<aop:before pointcut-ref="實際切入點Id" method="方法名"/>				
+				3.3.2 後置通知
+					<aop:after pointcut-ref="實際切入點Id" method="方法名"/>
+				3.3.3 返回後通知
+			      	<aop:after-returning pointcut-ref="實際切入點Id" method="方法名" returning="返回值" />
+				3.3.4 例外後通知
+			      	<aop:after-throwing pointcut-ref="實際切入點Id" method="方法名" throwing="????" />
+				3.3.5 環繞通知
+					<aop:around pointcut-ref="實際切入點Id" method="方法名"/>
+
+			4.ex
+				<beans xmlns="http://www.springframework.org/schema/beans"
+					xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					xmlns:aop="http://www.springframework.org/schema/aop"
+					xsi:schemaLocation="http://www.springframework.org/schema/beans
+				    	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+				    	http://www.springframework.org/schema/aop 
+				    	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+			
+					<!-- 此Service會被AOP機制操作	 -->
+					<bean id="memberService" class="model.service.member.MemberService" />
+					
+					<!-- 宣告自訂的Aspect -->
+					<bean id="memberAspect" class="core.aop.aspect.MemberAspect" />
+			
+					<aop:config>
+						<!-- 指定自訂的Aspect -->
+						<aop:aspect id="aspect01" ref="memberAspect">
+
+							<!-- 設定實際切入點指向的方法 -->
+							<!-- 參數式樣指定型態, ex. 有兩個int參數要寫成 (int, int) -->
+							<aop:pointcut id="memberAllMethods" expression="execution(* model.service.member.*.*(..))" />
+
+							<!-- 指定before Advice的實際切入點和Aspect的方法 -->
+							<aop:before pointcut-ref="memberAllMethods" method="memberBeforeAdvice" />
+
+							<!-- 指定after Advice的實際切入點和Aspect的方法 -->
+							<aop:after pointcut-ref="memberAllMethods" method="memberAfterAdvice" />
+
+							<!-- 指定after-return Advice的實際切入點和Aspect的方法 -->
+							<aop:after-returning pointcut-ref="memberAllMethods" method="memberAfterReturningAdvice" />
+
+							<!-- 指定throwing Advice的實際切入點和Aspect的方法 -->
+							<aop:after-throwing pointcut-ref="memberAllMethods" method="memberAfterThrowingAdvice" />
+
+							<!-- 指定around Advice的實際切入點和Aspect的方法 -->
+							<aop:around pointcut-ref="memberAllMethods" method="memberAroundAdvice" />
+
+						</aop:aspect>
+					</aop:config>
+				</beans>
+				
+	用Annotation定義
+		1. 加入額外jar檔(AspectJ)
+			1.1 aopalliance-x.y.jar
+			1.2 aspectjrt-x.y.zz.jar
+			1.3 aspectjweaver-x.y.z.jar
+
+		2. 驅動AspectJ
+			方式一: XML. 在Spring MVC組態檔裡加入..
+				<aop:aspectj-autoproxy />
+
+				*註: 須與<context:component-scan>寫在同一個組態設定檔內!
+			
+			方式二: Java Based Configuration. 在組態類別加入..
+				@Configuration
+				@EnableAspectJAutoProxy		// <----在組態類別加入此Annotation
+				public class AppConfig {
+				}
+
+		3. 定義Aspect類別
+			3.1 新建一類別
+			3.2 類別前加上@Aspect
+			3.3 宣告成bean (<bean> 或 組態類別 + @Bean 或 @Component)
+				*註: 如果是要對Controller使用AOP, 需寫在Spring-MVC的組態檔裡(applicationContext-mvc.xml)
+
+			3.4 定義Advice方法
+				方式A
+					A.1 加上通知註釋 (@After | @Before | @AfterReturning | @AfterThrowing | @Around), 並指定對象
+						@After("execution(修飾字 回傳型態 類別全名.方法名(參數列))")
+
+						// 對象為某類別下"所有"方法
+						@After("within(套件名.類別名)")
+
+						*註: @通知註釋("xxx") 內可寫的表示式稱為 "Pointcut Expression"
+
+					A.2 定義方法
+						*註: AroundAdvice較特別
+							1. 不可與Before | After一起使用						
+							2. 必須有回傳值
+							ex.
+								public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
+									System.out.println("around before");
+									Object retVal = joinPoint.proceed();
+									System.out.println("around after");
+									return retVal;
+								}
+
+				方式B
+					B.1 定義實際切入點
+						*註
+							1.實際切入點本體內必須為空
+							2.@通知註釋("xxx") 內可寫的表示式稱為 "Pointcut Expression"
+						ex.	
+							@Pointcut("execution( .. )")
+							private void 方法名() {}
+
+					B.2 定義通知: 定義通知, 並指向該實際切入點
+						ex.
+							@Before("方法名()")
+							public void beforeAdvice() {
+								...
+							}
+
+			3.EX
+				@Aspect
+				@Component
+				public class TestAspect {
+					// 方式A
+					@Before("execution(* web.member.service.impl.MemberServiceImpl.*(..))")
+					public void advice1() {
+						System.out.println("advice1" + new Date());
+					}
+
+					// 方式B
+					@Pointcut("execution(* web.member.service.impl.MemberServiceImpl.*(..))")
+					private void pointcut1() {}
+
+					@Before("pointcut1")
+					public void advice2() {
+						System.out.println("advice2" + new Date());
+					}
+
+					// extra-配合Annotation的用法
+					// 目標為 有使用List 且 有加@WebPrint 的方法
+					// WebPrint為自訂的Annotation
+					@Around(value = "execution(public java.util.List *(..)) && @annotation(WebPrint)", argNames = "WebPrint")
+					public Object print(ProceedingJoinPoint joinPoint, WebPrint webPrint) throws Throwable {
+						..
+					}
+				}
+
+	Pointcut表示式
+		參考
+			https://openhome.cc/Gossip/Spring/Pointcut.html
+
+		特殊符號
+			*: 任意
+			..: 0~N個符號
+			+: 指定型態的子型態
+
+		execution語法
+			execution(修飾字? 回傳型態 類別全名.?方法名(參數列) 例外類別?)
+
+			*註
+				?代表該Pattern可省略，修飾字、類別全名.、例外類別
+				無?代表必要Pattern，回傳型態、方法名、參數列
+
+
+	JoinPoint介面的方法
+		方法名稱				說明
+		----------------------------------------------------------------------------
+		getArgs()			取得參數被織入方法的參數, 型態為Object[]
+		getKind()			取得此切入點的切入方式
+		getSignature()		取得Signature物件, 代表被織入方法式樣
+		getSourceLocation()	取得SourceLocation物件, 代表實作此切入點對應AOP之位置
+		getStaticPart()		取得StaticPart物件, 代表此切入點靜態部分
+		getTarget()			取得被織入物件
+		getThis()			取得當前執行之物件
+		toLongString()		回傳代表此切入點完整字串
+		toShortString()		回傳代表此切入點簡短字串
+
+	ProceedingJoinPoint介面的方法
+		*註: 只支援環繞通知(AroundAdvice)
+
+		方法名稱									說明
+		----------------------------------------------------------------------------
+		proceed()								繼續執行下一個通知或目標方法
+		proceed(Object[] args)					繼續執行下一個通知或目標方法 (含參數)
+		set$AroundClosure(AroundClosure arc)	設定AroundClosure (用途???)
+
+	其他
+		*****returning="xxx", 若xxx為基本型態, 用Object型態接傳回值時會發生例外*****
+
+
+			
+JDBC Supported
+	目的: 簡化繁雜的JDBC寫法
+
+	DriverManagerDataSource類別
+		簡述
+			Spring提供測試用的DataSource，可在Java Project中使用DataSource
+			但實際上還是DriverManager，效能差
+
+	JndiTemplate
+		簡述: 由Spring提供, 用來取代傳統的JNDI 以名取物 方式, 但實際作用不大
+
+		範例
+			JndiTemplate template = new JndiTemplate();
+			DataSource dataSource = (DataSource) template.lookup("java:comp/env/jdbc/ipo");
+
+	JndiObjectFactoryBean
+		簡述: 若應用系統下已用JNDI方式建立DataSource, 可用JndiObjectFactoryBean取回此物件至Spring下
+
+		範例
+			<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+				<property name="jndiName" value="java:comp/env/jdbc/ipo"/>
+			</bean>
+		
+	JdbcTemplate類別
+		*註: Spring框架中, 名稱為XxxTemplate的類別/介面為整合多功能之意
+		功能
+			1. update sql script
+			2. call procedure
+			3. get result
+			4. catch SQLException
+			
+		建立步驟
+			1. 宣告DataSource
+			2. 宣告JdbcTemplate, 並透過建構子將DataSource注入
+					<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+						<constructor-arg ref="dataSource" />
+					</bean>
+				
+			3. 定義映射器類別
+				3.1 實作RowMapper<XxxBean>
+				3.2 實作mapRow()方法, 用JDBC方式指定ResultSet的第幾欄放入POJO的哪一個性質
+				3.ex
+					public class XxxMapper implements RowMapper<XxxBean> {
+						@Override
+						public Xxx mapRow(ResultSet rs, int rowNum) throws SQLException {
+							Xxx xxx = new Xxx();
+							xxx.set性質1(rs.get資料型態(1));
+							xxx.set性質2(rs.get資料型態(2));
+							...
+							return xxx;
+						}
+					}
+					
+			4. 定義DAO介面, 內含DML方法
+			
+			5. 定義DAO實作類別
+				5.1 實作DAO介面
+				5.2 宣告一屬性JdbcTemplate jdbcTemplate: private JdbcTemplate jdbcTemplate;
+				5.3 定義一建構子, 含有一JdbcTemplate類別之參數
+				5.4 實作DML方法
+					INSERT、DELETE、UPDATE: jdbcTemplate.update(String sql, Object... args)
+					SELECT BY KEY: jdbcTemplate.queryForObject(String sql, Object[] args, RowMapper<T> rowMapper)
+					SELECT ALL: jdbcTemplate.query(String sql, RowMapper<T> rowMapper)
+					OTHERS(CREATE、DROP、TRUNCATE...): jdbcTemplate.execute(String sql)
+					
+			5.ex
+				public class XxxDAO implements IXxxDAO {
+					private JdbcTemplate jdbcTemplate;
+					
+					public XxxDAO(JdbcTemplate jdbcTemplate) {
+						this.jdbcTemplate = jdbcTemplate;
+					}
+
+					@Override
+					public Integer insert(XxxBean bean) {
+						String sql = "INSERT XXX(...) VALUES(...)";
+						return jdbcTemplate.update(sql, bean.getXxx(), bean.getYyy());
+					}
+
+					@Override
+					public int deleteByKey(Integer key) {
+						String sql = "DELETE FROM XXX WHERE KEY = ?";
+						return jdbcTemplate.update(sql, key);
+					}
+
+					@Override
+					public int update(XxxBean bean) {
+						String sql = "UPDATE XXX SET COLUMN1 = ?, ...";
+						return jdbcTemplate.update(sql, bean.getXxx(), bean.getYyy());
+					}
+
+					@Override
+					public XxxBean selectByKey(Integer key) {
+						String sql = "SELECT * FROM XXX WHERE KEY = ?";
+						return jdbcTemplate.queryForObject(sql, new Object[]{key}, new XxxMapper());
+					}
+
+					@Override
+					public List<XxxBean> selectAll() {
+						String sql = "SELECT * FROM XXX";
+						return jdbcTemplate.query(sql, new XxxMapper());
+					}
+				}
+			
+	SimpleJdbcCall類別
+		功能: 對內儲程序呼叫/取結果
+		建立步驟
+			1. 宣告DataSource
+			2. 宣告SimpleJdbcCall, 並透過建構子將DataSource注入
+				<bean id="simpleJdbcCall" class="org.springframework.jdbc.core.simple.SimpleJdbcCall">
+					<constructor-arg ref="dataSource" />
+				</bean>
+			
+			3. 定義DAO介面, 內含呼叫內儲程序的方法
+			4. 定義DAO實作類別
+				4.1 實作DAO介面
+				4.2 宣告一屬性SimpleJdbcCall simpleJdbcCall: private SimpleJdbcCall simpleJdbcCall;
+				4.3 定義一建構子, 含有一JdbcTemplate類別之參數
+				4.4 實作呼叫內儲程序的方法
+					4.4.1 宣告MapSqlParameterSource: MapSqlParameterSouce inMap = new MapSqlParameterSource();
+					4.4.2 設定內儲程序的IN參數: inMap.addValue("IN參數名稱1", 值2); inMap.addValue("IN參數名稱2", 值2); ...
+					4.4.3 指定內儲程序: simpleJdbcCall.withProcedureName("內儲程序名稱");
+					4.4.4 呼叫內儲程序: Map<String, Object> outMap = simpleJdbcCall.execute(inMap);
+					4.4.5 取出執行結果: outMap.get("OUT參數名稱1"); outMap.get("OUT參數名稱2");
+				4.ex
+					public class MemberDAO_SimpleJdbcCall implements IMemberDAO {
+						private SimpleJdbcCall simpleJdbcCall;
+			
+						public MemberDAO_JDBCTemplate(SimpleJdbcCall simpleJdbcCall) {
+							this.simpleJdbcCall = simpleJdbcCall;
+						}
+						
+						...
+						
+						@Override
+						public XxxBean selectByKey(Integer key) {
+							MapSqlParameterSource inMap = new MapSqlParameterSource();
+							inMap.addValue("INOUT參數名稱", key);
+							simpleJdbcCall.withProcedureName("內儲程序名稱");
+							Map<String, Object> outMap = simpleJdbcCall.execute(inMap);
+							XxxBean bean = new XxxBean();
+							bean.setXxx((型態) outMap.get("OUT參數名稱1"));
+							bean.setYyy((型態) outMap.get("OUT參數名稱2"));
+							...
+							return bean;
+						}
+			
+					}
+					
+				4.補充: 創建內儲程序script
+					DELIMITER @@
+					CREATE PROCEDURE TEST(INOUT inout_id INTEGER, OUT out_account VARCHAR(50), OUT out_password VARCHAR(50), OUT out_nickname VARCHAR(50),
+					OUT out_createTime DATETIME, OUT out_pass BIT(1), OUT out_sessionId VARCHAR(50))
+						BEGIN
+							SELECT *
+							INTO inout_id, out_account, out_password, out_nickname, out_createTime, out_pass, out_sessionId
+							FROM MEMBER
+							WHERE ID = inout_id;
+						END @@
+					DELIMITER ;
+				
+	SimpleJdbcInsert類別
+		功能: INSERT資料, 並回傳自動產生的鍵值
+		建立步驟
+			1. 宣告DataSource
+			2. 宣告SimpleJdbcInsert, 並透過建構子將DataSource注入
+			3. 宣告SimpleJdbcInsert: SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(dataSource);
+			4. 指定TABLE: simpleJdbcInsert.withTableName("表格名");
+			5. 指定自動產生鍵值的COLUMN: simpleJdbcInsert.usingGeneratedKeyColumns("欄位名");
+			6. 指定其他非自動產生鍵值的COLUMN: simpleJdbcInsert.usingColumns("欄位名1", "欄位名2", ...);
+			7. 宣告及設定INSERT資料
+				7.1 宣告: Map<String, Object> insertMap = new HashMap<>();
+				7.2 設定資料: insertMap.put("欄位名1", 值1); insertMap.put("欄位名2", 值2); ...
+			8. 執行並取回結果: Number key = simpleJdbcInsert.executeAndReturnKey(insertMap);
+			ex.
+				public class XxxDAO implements IXxxDAO {
+					private SimpleJdbcInsert simpleJdbcInsert;
+					private final static String TABLE_NAME = "表格名";
+					private final static String COLUMN_PK = "自動產生鍵值得欄位名";
+					private final static String[] COLUMNS = {"欄位名1", "欄位名2", ...};
+					
+					public XxxDAO(DataSource dataSource) {
+						simpleJdbcInsert = new SimpleJdbcInsert(dataSource);
+						simpleJdbcInsert.withTableName(TABLE_NAME);
+						simpleJdbcInsert.usingGeneratedKeyColumns(COLUMN_PK);
+						simpleJdbcInsert.usingColumns(COLUMNS);
+					}
+					
+					@Override
+					public Integer insertXxx(XxxBean bean) {
+						Map<String, Object> insertMap = new HashMap<>();
+						insertMap.put("欄位名1", bean.getXxx());
+						insertMap.put("欄位名2", bean.getYyy());
+						...
+						return simpleJdbcInsert.executeAndReturnKeyHolder(insertMap).intValue();
+					}
+				}
+		
+	JdbcDaoSupport類別
+		簡述: 由Spring提供, 比JdbcTemplate更進階的支援類別, 但其實沒省幾行程式
+
+		步驟
+			1. 建立Dao類別
+				訂一類別, 繼承JdbcDaoSupport
+
+			2. 注入DataSource
+				@Autowired
+				DataSource dataSource;
+
+			3. 將DataSource傳給JdbcDaoSupport
+				@PostConstruct
+				public void init() {
+					setDataSource(dataSource);
+				}
+
+			4. 撰寫 新刪修查 方法
+				4.1 取得JdbdTemplate
+					getJdbcTemplate()
+
+				4.2 剩下步驟同JdbcTemplate寫法
+
+		範例
+			@Repository
+			public class MemberDaoImpl extends JdbcDaoSupport implements MemberDao {
+				private static BeanPropertyRowMapper<Member> mapper = BeanPropertyRowMapper.newInstance(Member.class);
+				@Autowired
+				DataSource dataSource;
+
+				@PostConstruct
+				public void init() {
+					setDataSource(dataSource);
+				}
+				
+				@Override
+				public Integer insert(Member member) {
+					int count = 0 ;
+					String sql = "insert MEMBER(ACCOUNT, PASSWORD, NICKNAME, CREATE_TIME, PASS, SESSION_ID) VALUES(?, ?, ?, ?, ?, ?)";
+					return getJdbcTemplate().update(sql, member.getAccount(), member.getPassword(), member.getNickname(),
+							member.getCreateTime(), member.getPass(), member.getSessionId());
+				}
+
+				@Override
+				public Integer delete(Integer id) {
+					String sql = "delete from MEMBER where ID = ?";
+					return getJdbcTemplate().update(sql, id);
+				}
+
+				@Override
+				public Integer update(Member member) {
+					String sql = "update MEMBER set ACCOUNT = ?, PASSWORD = ?, NICKNAME = ?, CREATE_TIME = ?, PASS = ?, SESSION_ID = ? WHERE ID = ?";
+					return getJdbcTemplate().update(sql, member.getAccout(), member.getPassword(), member.getNickname(), member.getCreateTime(),
+						member.getPass(), member.getSession(), member.getId());
+				}
+
+				@Override
+				public Member selectById(Integer id) {
+					String sql = "select * from MEMBER where ID = ?";
+					try {
+						return getJdbcTemplate().queryForObject(sql, mapper, id);
+					} catch(EmptyResultDataAccessException ex) {
+						return null;
+					}
+				}
+				
+				@Override
+				public List<Member> getAll() {
+					String sql = "select * from MEMBER";
+					List<Member> memberList = getJdbcTemplate().query(sql, mapper);
+					return memberList;
+				}
+			}
+
+	BeanPropertyRowMapper類別
+		簡述: Spring提供的RowMapper實作類別, 可自動映射
+
+		支援映射關係
+			1. POJO性質名 與 TABLE欄位名 一樣 (但不區分大小寫)
+			2. POJO性質駝峰式命名 與 TABLE欄位典型式命名
+
+		範例
+			BeanPropertyRowMapper<Member> memberMapper = BeanPropertyRowMapper.newInstance(Member.class);
+
+	JndiTemplate類別
+
+	其他類別
+		1. NamedParameterJdbcTemplate
+		2. SimpleJdbcTemplate
+			
+	交易控制(Transaction Management)
+		關聯式資料庫的交易控制特性(ACID)
+			1. Atomicity(原子性)
+			2. Consistency(一致性)
+			3. Isolation(隔離性)
+			4. Durability(持久性)
+				
+		PlatformTransactionManager - Spring交易控制的核心介面
+			方法
+				TransactionStatus getTransaction(TransactionDefinition definition): 依傳播行為參數, 回傳當前交易或新建一個交易
+				void commit(TransactionStatus status): 依狀態參數, 成功交易
+				void rollback(TransactionStatus status): 依狀態參數, 回滾交易
+					
+		TransactionDefinition - 交易定義介面, 即設定交易傳播行為和隔離層級介面
+			方法
+				int getPropagationBehavior(): 傳回交易傳播行為代碼. Spring提供與EJB CMT類似的交易傳播選項
+				int getIsolationLevel(): 傳回交易隔離層級
+				String getName(): 傳回交易名稱
+				int getTimeout(): 傳回交易時間上限
+				boolean isReadOnly(): 交易唯讀否
+					
+			常數
+				隔離層級(Isolation Level)
+					ISOLATION_DEFAULT: 預設的隔離層級
+					ISOLATION_READ_UNCOMMITTED: 最低的層級, 允許髒讀、不可重複讀和幻讀
+					ISOLATION_READ_COMMITTED: 次低的層級, 防止髒讀, 但允許不可重複讀和幻讀
+					ISOLATION_REPEATABLE_READ: 第三層級, 防止髒讀和不可重複讀, 但允許幻讀
+					ISOLATION_SERIALIZABLE: 最高的層級, 防止髒讀、不可重複讀和幻讀
+				
+				傳播類型
+					PROPAGATION_MANDATORY: 支援當前交易, 若無當前交易則拋出例外
+					PROPAGATION_NESTED: 若當前交易存在, 則在內部的交易執行
+					PROPAGATION_NEVER: 不支援當前交易, 若當前交易存在則拋出例外
+					PROPAGATION_NOT_SUPPORTED: 不支援當前交易, 只執行非交易控制動作
+					PROPAGATION_REQUIRED: 支援當前交易, 若無當前交易則建立一個新的交易
+					PROPAGATION_REQUIRES_NEW: 建立一個新的交易, 若當前交易存在則停止當前交易
+					PROPAGATION_SUPPORTS: 支援當前交易, 若當前交易不存在則執行非交易控制動作
+					TIMEOUT_DEFAULT: 使用底層的超時控制, 若底層不支援則無
+					
+						TransactionStatus - 交易狀態介面
+				方法
+					boolean hasSavepoint(): 交易有保存點否
+					boolean isCompleted(): 交易已完成否. (已經commit / rollback)
+					boolean isNewTransaction(): 當前交易為新建否
+					boolean isRollbackOnly(): 交易被設定為只能回滾否
+					void setRollbackOnly(): 設定交易為只能回滾
+				
+		撰寫方式
+			1. 編程式: 交易控制全部寫在Java裡, 靈活度高, 但難維護
+			2. 聲明式: 使用註釋或XML, 將程式與交易控制抽離, 易維護
+			
+		編程式建立步驟
+			*註: 編程式是在DAO裡加入交易控制
+			0. 先撰寫完DAO相關程式(ex. 以Jdbctemplate撰寫DAO)
+			
+			1. 相關屬性宣告: 在DAO實作類別內加入屬性
+				1.1 交易管理者: private PlatformTransactionManager txManager;
+				1.2 交易定義: private TransactionDefinition txDefinition;
+				1.3 交易狀態: private TransactionStatus txStatus;
+			
+			2. 初始化交易管理者: 在DAO實作類別內
+				2.1 透過建構子注入DataSource
+				2.2 在建構子內初始化: txManager = new DataSourceTransactionManager(dataSource);
+				2.補充: jdbcTemplate = new JdbcTemplate(dataSource);
+					
+			3. 加入交易控制: 在DAO實作類別內, 需要交易控制的方法內加上..
+				3.1 加上try-catch: 至少要包含jdbcTemplate.update(...);
+				3.2 交易定義初始化: txDefinition = new DefaultTransactionDefinition();
+				3.3 交易狀態初始化: txStatus = txManager.getTransaction(txDefinition);
+				3.4 Commit: 在try區塊內, jdbcTemplate.update(...)的下一行, 加上txManager.commit(txStatus);
+				3.5 Rollback: 在catch區塊內, e.printStackTrace()的下一行, 加上txManager.rollback(txStatus);
+				
+			ex.
+				public class MemberDAOTxManage implements IMemberDAO {
+					private final static MemberMapper MAPPER = new MemberMapper();
+					private JdbcTemplate jdbcTemplate;
+					private PlatformTransactionManager txManager;
+					private TransactionDefinition txDefinition;
+					private TransactionStatus txStatus;
+					
+					public MemberDAOTxManage(DataSource dataSource) {
+						jdbcTemplate = new JdbcTemplate(dataSource);
+						txManager = new DataSourceTransactionManager(dataSource);
+					}
+				
+					@Override
+					public int insertMember(Member bean) {
+						int result = -1;
+						String sql = "INSERT MEMBER(ACCOUNT, PASSWORD, NICKNAME, CREATE_TIME, PASS, SESSION_ID) VALUES(?, ?, ?, ?, ?, ?)";
+						txDefinition = new DefaultTransactionDefinition();
+						txStatus = txManager.getTransaction(txDefinition);
+						try {
+							result = jdbcTemplate.update(sql, bean.getAccount(), bean.getPassword(), bean.getNickname(), bean.getCreateTime(), bean.getPass(), bean.getSessionId());
+							txManager.commit(txStatus);
+						} catch (Exception e) {
+							e.printStackTrace();
+							txManager.rollback(txStatus);
+						}
+						return result;
+					}
+			
+					@Override
+					public int deleteMemberByKey(Integer id) {
+						int result = -1;
+						String sql = "DELETE FROM MEMBER WHERE ID = ?";
+						txDefinition = new DefaultTransactionDefinition();
+						txStatus = txManager.getTransaction(txDefinition);
+						try {
+							result = jdbcTemplate.update(sql, id);
+							txManager.commit(txStatus);
+						} catch (Exception e) {
+							e.printStackTrace();
+							txManager.rollback(txStatus);
+						}
+						return result;
+					}
+				
+					@Override
+					public int updateMember(Member bean) {
+						int result = -1;
+						String sql = "UPDATE MEMBER SET ACCOUNT = ?, PASSWORD = ?, NICKNAME = ?, CREATE_TIME = ?, PASS = ?, SESSION_ID = ? WHERE ID = ?";
+						txDefinition = new DefaultTransactionDefinition();
+						txStatus = txManager.getTransaction(txDefinition);
+						try {
+							result = jdbcTemplate.update(sql, bean.getAccount(), bean.getPassword(), bean.getNickname(), bean.getCreateTime(), bean.getPass(), bean.getSessionId(), bean.getId());
+							txManager.commit(txStatus);
+						} catch (Exception e) {
+							e.printStackTrace();
+							txManager.rollback(txStatus);
+						}
+						return result; 
+					}
+			
+					...//(select不需交易控制, 略..)
+			
+				}
+					
+		聲明式建立步驟
+			*註: 聲明式是在XML裡加入交易控制, 而此方式是用AOP來完成交易控制
+					
+			0. 先撰寫完DAO相關程式(ex. 以Jdbctemplate撰寫DAO)
+				
+			1. 宣告交易管理者
+				<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+					<property name="dataSource"  ref="dataSource" />    
+				</bean>
+					
+			2. 設定交易控制通知(Advice): 指向需交易控制的方法
+				<tx:advice id="txAdvice"  transaction-manager="txManager">
+					<tx:attributes>
+						<tx:method name="insertXxx" />	<--方法名
+						<tx:method name="deleteXxx" />	<--方法名
+						<tx:method name="updateXxx" />	<--方法名
+					</tx:attributes>
+				</tx:advice>
+			
+			3. 設定交易控制實際切入點
+				<aop:config>
+					<aop:pointcut id="DMLOperation" expression="execution(* model.dao.XxxDAO.*(..))"/>	<--設定實際切入點監控的方法expression
+					<aop:advisor advice-ref="txAdvice" pointcut-ref="DMLOperation"/>	<--指定通知及實際切入點
+				</aop:config>
+
+
+
+Others
+	外部設定(.properties)
+		參考
+			https://www.baeldung.com/properties-with-spring
+
+		Step1: 指定.properties檔案
+			狀況一: 在組態類別指定
+				單檔
+					@Configuration
+					@PropertySource("classpath:檔名.properties")
+					public class PropertiesWithJavaConfig {
+
+				多檔
+					方式一
+						@Configuration
+						@PropertySource({"classpath:檔名1.properties", "classpath:檔名2.properties"})
+						public class PropertiesWithJavaConfig {
+
+					方式二
+						@PropertySource("classpath:檔名1.properties")
+						@PropertySource("classpath:檔名2.properties")
+						public class PropertiesWithJavaConfig {
+
+					方式三
+						@PropertySources({
+						    @PropertySource("classpath:foo.properties"),
+						    @PropertySource("classpath:bar.properties")
+						})
+						public class PropertiesWithJavaConfig {
+
+			狀況二: 在XML指定
+				<context:property-placeholder
+					ignore-unresolvable="true"
+					location="classpath:application.properties,classpath:application-jdbc.properties" />
+
+		Step2: 取得值
+			方式一: 使用@Value("xxx.yyy")
+				// 某類別屬性加上@Value, 亦可加在setter、方法參數前
+				@Value("${ systemProperties['person.name']}")
+				private String name;
+			
+			方式二: 使用Environment物件
+				@Autowired
+				private Environment env;
+				..
+				env.getProperty("xxx.yyy")
+
+
+

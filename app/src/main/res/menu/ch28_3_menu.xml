@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mainFragment"
+        android:title="@string/test_text_title" />
+    <item
+        android:id="@+id/ch09_Fragment"
+        android:title="@string/ch09_text_title" />
+    <item
+        android:id="@+id/ch10_Fragment"
+        android:title="@string/ch10_text_title" />
+    <item
+        android:id="@+id/ch11_Fragment"
+        android:title="@string/ch11_text_title" />
+    <item
+        android:id="@+id/ch12_Fragment"
+        android:title="@string/ch12_text_title" />
+    <item
+        android:id="@+id/ch13_Fragment"
+        android:title="@string/ch13_text_title" />
+    <item
+        android:id="@+id/ch14_Fragment"
+        android:title="@string/ch14_text_title" />
+    <item
+        android:id="@+id/ch16_1_Fragment"
+        android:title="@string/ch16_1_text_title" />
+    <item
+        android:id="@+id/ch16_2_Fragment"
+        android:title="@string/ch16_2_text_title" />
+    <item
+        android:id="@+id/ch16_3_Fragment"
+        android:title="@string/ch16_3_text_title" />
+    <item
+        android:id="@+id/ch18_1_Fragment"
+        android:title="@string/ch18_1_text_title" />
+    <item
+        android:id="@+id/ch18_2_Fragment"
+        android:title="@string/ch18_2_text_title" />
+    <item
+        android:id="@+id/ch18_3_Fragment"
+        android:title="@string/ch18_3_text_title" />
+    <item
+        android:id="@+id/ch22_1_Fragment"
+        android:title="@string/ch22_1_text_title" />
+    <item
+        android:id="@+id/ch47_Fragment"
+        android:title="@string/ch47_text_title" />
+    <item
+        android:id="@+id/ch51_1_Fragment"
+        android:title="@string/ch51_1_text_title" />
+    <item
+        android:id="@+id/ch52_Fragment"
+        android:title="@string/ch52_text_title" />
+    <item
+        android:id="@+id/ch53_Fragment"
+        android:title="@string/ch53_text_title" />
+</menu>
