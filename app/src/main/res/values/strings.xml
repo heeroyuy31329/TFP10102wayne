@@ -84,11 +84,17 @@
     <string name="ch18_3_textCycleInterpolator">Cycle Interpolator</string>
     <string name="ch18_3_textAnimation">Animation</string>
     <string name="ch18_3_textInterpolator">Interpolator</string>
+    <!-- ch19 -->
+    <string name="ch19_1_text_title">(未完成)ch19_1 ScrollView</string>
+    <string name="ch19_2_text_title">(未完成)ch19_2 NestedScrollView</string>
+    <string name="ch19_3_text_title">(未完成)ch19_3 CoordinatorLayout</string>
     <!-- ch20 -->
+    <string name="ch20_text_title">(未完成)ch20 選單</string>
     <string name="ch20_text_item_1">item01</string>
     <string name="ch20_text_item_2">item02</string>
     <string name="ch20_text_item_3">item03</string>
     <!-- ch21 -->
+    <string name="ch21_2_text_title">(未完成)ch21_2 Spinner</string>
     <string-array name="ch21_my_skill">
         <item>AAAAAA</item>
         <item>BBBBBB</item>
@@ -97,15 +103,58 @@
     </string-array>
     <!-- ch22 -->
     <string name="ch22_1_text_title">ch22_1 RecyclerView 基本</string>
+    <string name="ch22_2_text_title">(未完成)ch22_2 RecyclerView 整頁模式</string>
+    <string name="ch22_3_text_title">(未完成)ch22_3 RecyclerView 可拖滑選項</string>
+    <string name="ch22_4_text_title">(未完成)ch22_4 SearchView</string>
+    <!-- ch24 -->
+    <string name="ch24_text_title">(未完成)ch24 生命週期</string>
     <!-- ch25 -->
     <string name="ch25_text_login">Login</string>
     <string name="ch25_text_name">Username</string>
     <string name="ch25_text_password">Password</string>
     <!-- ch26 -->
+    <string name="ch26_text_title">(未完成)ch26 使用導覽</string>
     <string name="ch26_text_result">Result</string>
+    <!-- ch27 -->
+    <string name="ch27_text_title">(未完成)ch27 狀態列</string>
     <!-- ch28 -->
+    <string name="ch28_1_text_title">(未完成)ch28_1 ViewPager2</string>
+    <string name="ch28_2_text_title">(未完成)ch28_2 BottomNavigationView</string>
     <string name="ch28_drawerOpen">Open</string>
     <string name="ch28_drawerClose">Close</string>
+    <!-- ch29 -->
+    <string name="ch29_text_title">(未完成)ch29 對話框</string>
+    <!-- ch30 -->
+    <string name="ch30_text_title">(未完成)ch30 跳轉至其他App</string>
+    <!-- ch31 -->
+    <string name="ch31_text_title">(未完成)ch31 Assets</string>
+    <!-- ch32 -->
+    <string name="ch32_1_text_title">(未完成)ch32_1 Shared Preferences</string>
+    <string name="ch32_2_text_title">(未完成)ch32_2 Internal Storage</string>
+    <string name="ch32_3_text_title">(未完成)ch32_3 External Storage</string>
+    <!-- ch36 -->
+    <string name="ch36_1_text_title">(未完成)ch36_1 拍照</string>
+    <string name="ch36_2_text_title">(未完成)ch36_2 挑選圖像</string>
+    <string name="ch36_3_text_title">(未完成)ch36_3 縮放圖像</string>
+    <string name="ch36_4_text_title">(未完成)ch36_4 圖像裁切器</string>
+    <!-- ch37 -->
+    <string name="ch37_text_title">(未完成)ch37 Audio(音訊)</string>
+    <!-- ch38 -->
+    <string name="ch38_text_title">(未完成)ch38 Video(視訊)</string>
+    <!-- ch40 -->
+    <string name="ch40_1_text_title">(未完成)ch40_1 定位</string>
+    <string name="ch40_2_text_title">(未完成)ch40_2 地名地址與緯經度互轉</string>
+    <string name="ch40_3_text_title">(未完成)ch40_3 計算距離</string>
+    <!-- ch41 -->
+    <string name="ch41_text_title">(未完成)ch41 使用內建地圖App</string>
+    <!-- ch42 -->
+    <string name="ch42_text_title">(未完成)ch42 客製化地圖-基本架構</string>
+    <!-- ch43 -->
+    <string name="ch43_text_title">(未完成)ch43 客製化地圖-基本設定</string>
+    <!-- ch44 -->
+    <string name="ch44_text_title">(未完成)ch44 客製化地圖-標記與訊息視窗</string>
+    <!-- ch45 -->
+    <string name="ch45_text_title">(未完成)ch45 2D繪圖</string>
     <!-- ch47 -->
     <string name="ch47_text_title">ch47 感應器</string>
     <string name="ch47_text_Accelerometer">Accelerometer Sensor</string>
@@ -113,10 +162,15 @@
     <string name="ch47_text_Orientation">Orientation Sensor</string>
     <string name="ch47_text_Proximity">Proximity Sensor</string>
     <string name="ch47_text_Light">Light Sensor</string>
+    <!-- ch49 -->
+    <string name="ch49_text_title">(未完成)ch49 Notification</string>
+    <!-- ch50 -->
+    <string name="ch50_text_title">(未完成)ch50 Broadcast</string>
     <!-- ch51 -->
     <string name="ch51_1_text_title">ch51_1 Service/Wake Lock</string>
     <string name="ch51_1_text_start">Start Music</string>
     <string name="ch51_1_text_stop">Sop Music</string>
+    <string name="ch51_3_text_title">(未完成)ch51_3 IntentService</string>
     <!-- ch52 -->
     <string name="ch52_text_title">ch52 AlarmManager</string>
     <string name="ch52_text_setAlarm">Set Alarm</string>
@@ -125,7 +179,8 @@
     <string name="ch53_text_title">ch53 JobScheduler</string>
     <string name="ch53_text_schedule">Schedule Job</string>
     <string name="ch53_text_cancel">Cancel Job</string>
+    <!-- ch54 -->
+    <string name="ch54_text_title">(未完成)ch54 AdMob廣告看板</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="hello_blank_fragment">Making.......</string>
 </resources>

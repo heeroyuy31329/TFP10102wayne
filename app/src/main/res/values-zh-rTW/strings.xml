@@ -81,4 +81,6 @@
     </string-array>
     <!-- ch22 -->
     <string name="ch22_1_text_title">ch22_1 RecyclerView 基本</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">製作中.......</string>
 </resources>
