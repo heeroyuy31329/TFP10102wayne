@@ -115,6 +115,9 @@ public class Ch18_3_Fragment extends Fragment {
                     return;
                 }
 
+                // 切換特效前須先停止後再播放
+                animator.cancel();
+
                 if (checkedId == R.id.ch18_3_linearRadioButton) {
                     animator.setInterpolator(new LinearInterpolator());
                 } else if (checkedId == R.id.ch18_3_accelerateRadioButton) {
@@ -134,6 +137,8 @@ public class Ch18_3_Fragment extends Fragment {
                 } else if (checkedId == R.id.ch18_3_cycleRadioButton) {
                     animator.setInterpolator(new CycleInterpolator(3));
                 }
+
+                animator.start();
             }
         });
     }

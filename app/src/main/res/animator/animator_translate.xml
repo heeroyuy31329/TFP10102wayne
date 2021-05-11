@@ -20,5 +20,5 @@
         android:startOffset="1000"
         android:repeatCount="infinite"
         android:repeatMode="reverse"
-        android:interpolator="@android:anim/linear_interpolator" />
+        android:interpolator="@android:anim/bounce_interpolator" />
 </set>
