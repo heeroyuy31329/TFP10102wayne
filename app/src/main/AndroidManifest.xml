@@ -59,9 +59,12 @@
         </intent>
     </queries> <!-- ch39 -->
     <!-- 使用網路的權限 -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 檢查網路狀態的權限 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 使用概略定位的權限 (擇一) -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 使用精準定位的權限 (擇一) -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 檢查網路狀態的權限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 使用概略定位的權限 (擇一) -->
+<!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
+    <!-- 使用精準定位的權限 (擇一) -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <!-- ch51-2 -->

@@ -142,7 +142,9 @@
     <!-- ch38 -->
     <string name="ch38_text_title">(未完成)ch38 Video(視訊)</string>
     <!-- ch40 -->
-    <string name="ch40_1_text_title">(未完成)ch40_1 定位</string>
+    <string name="ch40_1_text_title">ch40_1 定位</string>
+    <string name="ch40_1_text_positioning">Positioning</string>
+
     <string name="ch40_2_text_title">(未完成)ch40_2 地名地址與緯經度互轉</string>
     <string name="ch40_3_text_title">(未完成)ch40_3 計算距離</string>
     <!-- ch41 -->
