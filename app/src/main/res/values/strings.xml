@@ -147,7 +147,11 @@
     <string name="ch40_2_text_title">ch40_2 地名地址與緯經度互轉</string>
     <string name="ch40_2_text_Geocode">Geocode</string>
     <string name="ch40_2_text_PleaseInput">Pleast input address</string>
-    <string name="ch40_3_text_title">(未完成)ch40_3 計算距離</string>
+    <string name="ch40_3_text_title">ch40_3 計算距離</string>
+    <string name="ch40_3_text_start">Start</string>
+    <string name="ch40_3_text_end">End</string>
+    <string name="ch40_3_text_calculate">Calculate</string>
+    <string name="ch40_3_text_pleaseInput">please enter start/end locations</string>
     <!-- ch41 -->
     <string name="ch41_text_title">(未完成)ch41 使用內建地圖App</string>
     <!-- ch42 -->
