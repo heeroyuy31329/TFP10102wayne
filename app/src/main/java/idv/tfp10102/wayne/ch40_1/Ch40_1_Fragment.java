@@ -194,7 +194,7 @@ public class Ch40_1_Fragment extends Fragment {
     public void onPause() {
         super.onPause();
 
-        if (fusedLocationClient != null) {
+        if (fusedLocationClient != null && locationCallback != null) {
             // 停止更新
             fusedLocationClient.removeLocationUpdates(locationCallback);
         }
