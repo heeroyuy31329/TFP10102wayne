@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ch41.Ch41_Fragment">
+
+    <EditText
+        android:id="@+id/ch41_editStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="台北火車站"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ch41_editEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="捷運港墘站"
+        app:layout_constraintEnd_toEndOf="@+id/ch41_editStart"
+        app:layout_constraintStart_toStartOf="@+id/ch41_editStart"
+        app:layout_constraintTop_toBottomOf="@+id/ch41_LocateStart" />
+
+    <Button
+        android:id="@+id/ch41_LocateStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/ch41_text_location_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ch41_editStart" />
+
+    <Button
+        android:id="@+id/ch41_StreetStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/ch41_text_streetview_start"
+        app:layout_constraintStart_toEndOf="@+id/ch41_LocateStart"
+        app:layout_constraintTop_toTopOf="@+id/ch41_LocateStart" />
+
+    <Button
+        android:id="@+id/ch41_LocateEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:text="@string/ch41_text_location_end"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ch41_editEnd" />
+
+    <Button
+        android:id="@+id/ch41_StreetEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/ch41_text_streetview_end"
+        app:layout_constraintStart_toEndOf="@+id/ch41_LocateEnd"
+        app:layout_constraintTop_toTopOf="@+id/ch41_LocateEnd" />
+
+    <Button
+        android:id="@+id/ch41_Direct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/ch41_text_direct"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ch41_LocateEnd" />
+</androidx.constraintlayout.widget.ConstraintLayout>

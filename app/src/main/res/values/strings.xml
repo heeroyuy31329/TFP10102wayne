@@ -153,7 +153,12 @@
     <string name="ch40_3_text_calculate">Calculate</string>
     <string name="ch40_3_text_pleaseInput">please enter start/end locations</string>
     <!-- ch41 -->
-    <string name="ch41_text_title">(未完成)ch41 使用內建地圖App</string>
+    <string name="ch41_text_title">ch41 使用內建地圖App</string>
+    <string name="ch41_text_location_start">location start</string>
+    <string name="ch41_text_streetview_start">streetview start</string>
+    <string name="ch41_text_location_end">location end</string>
+    <string name="ch41_text_streetview_end">streetview end</string>
+    <string name="ch41_text_direct">direct</string>
     <!-- ch42 -->
     <string name="ch42_text_title">(未完成)ch42 客製化地圖-基本架構</string>
     <!-- ch43 -->

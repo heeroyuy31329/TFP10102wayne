@@ -53,7 +53,7 @@
 
             <data android:mimeType="vnd.android.cursor.dir/phone_v2" />
         </intent>
-        <!-- 電話App -->
+        <!-- 電話App 地圖(ch41)-->
         <intent>
             <action android:name="android.intent.action.VIEW" />
         </intent>
