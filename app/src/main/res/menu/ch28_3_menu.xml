@@ -56,6 +56,9 @@
         android:id="@+id/ch41_Fragment"
         android:title="@string/ch41_text_title" />
     <item
+        android:id="@+id/ch42_Fragment"
+        android:title="@string/ch42_text_title" />
+    <item
         android:id="@+id/ch47_Fragment"
         android:title="@string/ch47_text_title" />
     <item
