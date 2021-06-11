@@ -164,9 +164,9 @@
     <!-- ch43 -->
     <string name="ch43_text_title">(未完成)ch43 客製化地圖-基本設定</string>
     <!-- ch44 -->
-    <string name="ch44_text_title">(未完成)ch44 客製化地圖-標記與訊息視窗</string>
+    <string name="ch44_text_title">ch44 客製化地圖-標記與訊息視窗</string>
     <!-- ch45 -->
-    <string name="ch45_text_title">(未完成)ch45 2D繪圖</string>
+    <string name="ch45_text_title">ch45 2D繪圖</string>
     <!-- ch47 -->
     <string name="ch47_text_title">ch47 感應器</string>
     <string name="ch47_text_Accelerometer">Accelerometer Sensor</string>
