@@ -125,7 +125,9 @@
     <!-- ch29 -->
     <string name="ch29_text_title">(未完成)ch29 對話框</string>
     <!-- ch30 -->
-    <string name="ch30_text_title">(未完成)ch30 跳轉至其他App</string>
+    <string name="ch30_text_title">ch30 跳轉至其他App</string>
+    <string name="ch30_text_pickPhone">pick phone</string>
+    <string name="ch30_text_callPhone">call phone</string>
     <!-- ch31 -->
     <string name="ch31_text_title">(未完成)ch31 Assets</string>
     <!-- ch32 -->
