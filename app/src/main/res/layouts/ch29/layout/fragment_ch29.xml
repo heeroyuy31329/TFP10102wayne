@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ch29.Ch29_Fragment">
+
+    <Button
+        android:id="@+id/ch29_btnDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/ch29_text_date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/ch29_btnTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/ch29_text_time"
+        app:layout_constraintStart_toStartOf="@+id/ch29_btnDate"
+        app:layout_constraintTop_toBottomOf="@+id/ch29_btnDate" />
+
+    <Button
+        android:id="@+id/ch29_btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/ch29_text_submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ch29_txtTime" />
+
+    <TextView
+        android:id="@+id/ch29_txtDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:ems="10"
+        app:layout_constraintStart_toEndOf="@+id/ch29_btnDate"
+        app:layout_constraintTop_toTopOf="@+id/ch29_btnDate" />
+
+    <TextView
+        android:id="@+id/ch29_txtTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        app:layout_constraintStart_toStartOf="@+id/ch29_txtDate"
+        app:layout_constraintTop_toTopOf="@+id/ch29_btnTime" />
+</androidx.constraintlayout.widget.ConstraintLayout>

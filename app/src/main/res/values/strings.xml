@@ -123,7 +123,10 @@
     <string name="ch28_drawerOpen">Open</string>
     <string name="ch28_drawerClose">Close</string>
     <!-- ch29 -->
-    <string name="ch29_text_title">(未完成)ch29 對話框</string>
+    <string name="ch29_text_title">ch29 對話框</string>
+    <string name="ch29_text_date">Date</string>
+    <string name="ch29_text_time">Time</string>
+    <string name="ch29_text_submit">Submit</string>
     <!-- ch30 -->
     <string name="ch30_text_title">ch30 跳轉至其他App</string>
     <string name="ch30_text_pickPhone">pick phone</string>
