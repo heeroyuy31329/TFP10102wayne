@@ -138,7 +138,10 @@
     <string name="ch32_2_text_title">(未完成)ch32_2 Internal Storage</string>
     <string name="ch32_3_text_title">(未完成)ch32_3 External Storage</string>
     <!-- ch36 -->
-    <string name="ch36_1_text_title">(未完成)ch36_1 拍照</string>
+    <string name="ch36_text_title">ch36 拍照、選圖、縮放、裁切</string>
+    <string name="ch36_text_camera">Camera</string>
+    <string name="ch36_text_pickPic">Pick</string>
+    <string name="ch36_text_scale">Scale</string>
     <string name="ch36_2_text_title">(未完成)ch36_2 挑選圖像</string>
     <string name="ch36_3_text_title">(未完成)ch36_3 縮放圖像</string>
     <string name="ch36_4_text_title">(未完成)ch36_4 圖像裁切器</string>

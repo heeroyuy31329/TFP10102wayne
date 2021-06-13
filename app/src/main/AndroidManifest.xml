@@ -2,35 +2,41 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="idv.tfp10102.wayne">
 
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- ch42 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- ch42 -->
     <uses-feature
         android:glEsVersion="0x00020000"
-        android:required="true" /> <!-- ch47-1 -->
+        android:required="true" />
+    <!-- ch47-1 -->
     <!-- 加速度 -->
     <uses-feature
         android:name="android.hardware.Sensor.accelerometer"
-        android:required="true" /> <!-- 陀螺儀 -->
+        android:required="true" />
+    <!-- 陀螺儀 -->
     <uses-feature
         android:name="android.hardware.Sensor.gyroscope"
-        android:required="true" /> <!-- 磁場 -->
+        android:required="true" />
+    <!-- 磁場 -->
     <uses-feature
         android:name="android.hardware.Sensor.compass"
-        android:required="true" /> <!-- 接近 -->
+        android:required="true" />
+    <!-- 接近 -->
     <uses-feature
         android:name="android.hardware.Sensor.proximity"
-        android:required="true" /> <!-- 光度 -->
+        android:required="true" />
+    <!-- 光度 -->
     <uses-feature
         android:name="android.hardware.Sensor.light"
-        android:required="true" /> <!-- ch37-1 -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- ch 36 設定權限，宣告跳轉intent -->
-    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" /> <!-- 此設定可以避免無此裝置的手機搜尋到App -->
-    <uses-feature
-        android:name="android.hardware.camera"
         android:required="true" />
+    <!-- ch37-1 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- ch 36 設定權限，宣告跳轉intent -->
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <!-- 此設定可以避免無此裝置的手機搜尋到App -->
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
 
     <queries>
         <intent>
-
             <!-- 拍照授權 -->
             <action android:name="android.media.action.IMAGE_CAPTURE" />
         </intent>
