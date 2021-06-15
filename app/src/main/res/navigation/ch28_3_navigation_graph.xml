@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ch28_3_navigation_graph"
-    app:startDestination="@id/ch36_Fragment">
+    app:startDestination="@id/ex01_Fragment">
     <fragment
         android:id="@+id/mainFragment"
         android:name="idv.tfp10102.wayne.MainFragment"
@@ -144,4 +144,9 @@
         android:name="idv.tfp10102.wayne.ch53.Ch53_Fragment"
         android:label="fragment_ch53"
         tools:layout="@layout/fragment_ch53" />
+    <fragment
+        android:id="@+id/ex01_Fragment"
+        android:name="idv.tfp10102.wayne.ex01.Ex01_Fragment"
+        android:label="fragment_ex01"
+        tools:layout="@layout/fragment_ex01" />
 </navigation>

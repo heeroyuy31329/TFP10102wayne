@@ -202,6 +202,8 @@
     <string name="ch53_text_cancel">Cancel Job</string>
     <!-- ch54 -->
     <string name="ch54_text_title">(未完成)ch54 AdMob廣告看板</string>
+    <!-- ex01 -->
+    <string name="ex01_text_title">ex01 bottom sheet</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Making.......</string>
 </resources>
