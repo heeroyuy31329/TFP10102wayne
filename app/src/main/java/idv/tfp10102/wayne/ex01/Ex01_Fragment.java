@@ -11,8 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ScrollView;
 import android.widget.Toast;
+
+import com.youth.banner.Banner;
+import com.youth.banner.adapter.BannerImageAdapter;
+import com.youth.banner.holder.BannerImageHolder;
+import com.youth.banner.indicator.CircleIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +30,7 @@ public class Ex01_Fragment extends Fragment {
     MainActivity activity;
 
     RecyclerView recyclerView;
+    Banner<Book, BannerImageAdapter<Book>> banner;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,17 @@ public class Ex01_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // 圖片輪播
+        banner = view.findViewById(R.id.ex01_banner);
+        banner.addBannerLifecycleObserver(activity)
+                .setIndicator(new CircleIndicator(activity))
+                .setAdapter(new BannerImageAdapter<Book>(getBookList()) {
+                    @Override
+                    public void onBindView(BannerImageHolder holder, Book data, int position, int size) {
+                        holder.imageView.setImageResource(data.getImageId());
+                    }
+                });
 
         recyclerView = view.findViewById(R.id.ex01_RecyclerView);
 

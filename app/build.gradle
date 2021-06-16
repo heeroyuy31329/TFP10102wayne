@@ -110,4 +110,6 @@ dependencies {
 
     // ch36-4
     implementation 'com.github.yalantis:ucrop:2.2.6'
+    // ex01 圖片輪播
+    implementation 'io.github.youth5201314:banner:2.2.2'
 }

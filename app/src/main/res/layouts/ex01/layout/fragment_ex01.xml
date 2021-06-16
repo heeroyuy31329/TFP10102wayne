@@ -7,6 +7,11 @@
     android:background="@color/teal_200"
     tools:context=".ex01.Ex01_Fragment">
 
+    <com.youth.banner.Banner
+        android:id="@+id/ex01_banner"
+        android:layout_width="match_parent"
+        android:layout_height="180dp" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
